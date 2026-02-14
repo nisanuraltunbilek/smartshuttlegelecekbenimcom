@@ -1,7 +1,12 @@
+import { Form, Link } from "react-router";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 
-export function Welcome() {
+interface WelcomeProps {
+  user: { userId: string; name: string; role: string } | null;
+}
+
+export function Welcome({ user }: WelcomeProps) {
   return (
     <main className="flex items-center justify-center pt-16 pb-4">
       <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
@@ -20,6 +25,43 @@ export function Welcome() {
           </div>
         </header>
         <div className="max-w-[300px] w-full space-y-6 px-4">
+          <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
+            {user ? (
+              <div className="space-y-4">
+                <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
+                  Welcome, <span className="font-semibold">{user.name}</span>!
+                </p>
+                <Form method="post" action="/logout">
+                  <button
+                    type="submit"
+                    className="w-full rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                  >
+                    Sign out
+                  </button>
+                </Form>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
+                  Get started
+                </p>
+                <div className="flex flex-col gap-2">
+                  <Link
+                    to="/login"
+                    className="block w-full rounded-lg bg-blue-600 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-700"
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="block w-full rounded-lg border border-gray-300 px-4 py-2 text-center text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800"
+                  >
+                    Create account
+                  </Link>
+                </div>
+              </div>
+            )}
+          </nav>
           <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
             <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
               What&apos;s next?

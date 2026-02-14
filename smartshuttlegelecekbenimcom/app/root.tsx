@@ -8,7 +8,13 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+import { getAuthUser } from "./lib/auth.server";
 import "./app.css";
+
+export async function loader({ request }: Route.LoaderArgs) {
+  const user = getAuthUser(request);
+  return { user };
+}
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
