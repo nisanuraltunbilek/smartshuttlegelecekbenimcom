@@ -94,18 +94,18 @@ export default function Login() {
           Don&apos;t have an account?{" "}
           <Link
             to="/register"
-            className="font-medium text-blue-600 hover:underline dark:text-blue-400"
+            className="font-medium text-white/70 hover:text-white transition-colors"
           >
             Sign up
           </Link>
         </>
       }
     >
-      <Form method="post" className="space-y-4">
+      <Form method="post" className="space-y-5">
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="block text-sm font-medium text-white/60 mb-1.5"
           >
             Email
           </label>
@@ -115,10 +115,11 @@ export default function Login() {
             type="email"
             autoComplete="email"
             defaultValue={actionData?.values?.email}
-            className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+            className="auth-input"
+            placeholder="you@example.com"
           />
           {actionData?.errors?.email && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+            <p className="mt-1.5 text-sm text-red-400">
               {actionData.errors.email}
             </p>
           )}
@@ -127,7 +128,7 @@ export default function Login() {
         <div>
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            className="block text-sm font-medium text-white/60 mb-1.5"
           >
             Password
           </label>
@@ -136,25 +137,28 @@ export default function Login() {
             name="password"
             type="password"
             autoComplete="current-password"
-            className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+            className="auth-input"
+            placeholder="Enter your password"
           />
           {actionData?.errors?.password && (
-            <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+            <p className="mt-1.5 text-sm text-red-400">
               {actionData.errors.password}
             </p>
           )}
         </div>
 
         {actionData?.errors?.form && (
-          <p className="text-sm text-red-600 dark:text-red-400">
-            {actionData.errors.form}
-          </p>
+          <div className="rounded-xl bg-red-500/10 border border-red-500/20 px-4 py-3">
+            <p className="text-sm text-red-400">
+              {actionData.errors.form}
+            </p>
+          </div>
         )}
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 dark:focus:ring-offset-gray-900"
+          className="auth-btn-primary"
         >
           {isSubmitting ? "Signing in..." : "Sign in"}
         </button>
