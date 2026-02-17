@@ -284,3 +284,4 @@ export function Splash({ onComplete }: SplashProps) {
     </div>
   );
 }
+
